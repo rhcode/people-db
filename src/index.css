@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.name-list {
+  height: 60vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.controls {
+  height: 40vh;
+  padding: 15px;
+}
+
+.add-people-button {
+  margin-top: 20%;
+  margin-left: 20%;
+}
+
+.person-details {
+  height: 100vh;
+  padding: 15px;
+  background-color: #d9d9d9
+}
+
+.nav-custom-primary {
+  background-color: #F9CF00;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+a.navbar-brand {
+  color: #000000;
+}
+
+.list-group-item {
+  background-color: #FFFFFF;
+}
