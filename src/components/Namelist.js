@@ -1,18 +1,13 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { namesFetchData, displayPersonName } from '../actions/nameActions'
 import Name from './Name'
 
 class Namelist extends React.Component {
-  componentDidMount() {
-    this.props.namesFetchData('https://randomuser.me/api/?results=5&inc=name,email,location&nat=gb,us,es')
-  }
-
   render() {
-    let peopleArray = [...this.props.names]
-    let toDisplay = peopleArray.map((person, index) =>
-      <Name key={index} personName={person.name}/>
+    let peopleArray = this.props.names
+    let toDisplay = peopleArray.map((person) =>
+      <Name key={person.id} personName={person.name} index={person.id}/>
     )
+
     return(
       <div className="list-group name-list">
           {toDisplay}
@@ -21,16 +16,7 @@ class Namelist extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    names: [...state.names]
-  }
-}
+export default Namelist
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    namesFetchData: (url) => dispatch(namesFetchData(url))
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Namelist)
+

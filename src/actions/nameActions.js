@@ -7,15 +7,31 @@ export function namesFetchDataSuccess(names) {
   }
 }
 
-export function displayPersonName(personName) {
+export function displayPerson(personId) {
   return {
-    type: ActionConstants.DISPLAY_NAME,
-    personName
+    type: ActionConstants.DISPLAY_PERSON,
+    personId
   }
+}
+
+export function loadingData(isLoading) {
+  return {
+    type: ActionConstants.LOADING,
+    isLoading
+  }
+}
+
+function getRandomInt(max) {
+  let upperLimit = max
+  if (max === undefined) {
+    upperLimit = 9999999
+  }
+  return Math.floor(Math.random() * Math.floor(upperLimit))
 }
 
 export function namesFetchData(url) {
   return (dispatch) => {
+    dispatch(loadingData(true))
     fetch(url)
       .then((response) => {
         if(!response.ok) {
@@ -34,10 +50,18 @@ export function namesFetchData(url) {
           let email = person["email"]
 
           let combinedName = name["first"] + " " + name["last"]
-          peopleArray.push({name: combinedName, location: location, email: email})
+          peopleArray.push({
+            id: getRandomInt(),
+            name: combinedName,
+            location: location,
+            email: email
+          })
         }
         return peopleArray
       })
-      .then((peopleArray) => dispatch(namesFetchDataSuccess(peopleArray)))
+      .then((peopleArray) => {
+        dispatch(loadingData(false))
+        dispatch(namesFetchDataSuccess(peopleArray))
+      })
   }
 }

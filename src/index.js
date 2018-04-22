@@ -4,8 +4,8 @@ import { Provider } from 'react-redux'
 import configureStore from './store/store'
 import './index.css'
 import App from './components/App'
+import initialState from './store/initialState'
 
-const initialState = {}
 const str = configureStore(initialState)
 
 ReactDOM.render(
