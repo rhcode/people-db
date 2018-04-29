@@ -21,23 +21,20 @@ function isLoading(state = true, action) {
   }
 }
 
-/*
-function currentPersonId(state = {}, action){
-  switch(action.type){
+function currentPersonId(state = 1234, action){
+  switch(action.type) {
     case ActionConstants.DISPLAY_PERSON:
-      return {
-        ...state,
-        currentPersonId: action.personId
-      }
+      return action.currentPersonId
 
-    default: state
+    default:
+      return state
   }
 }
-*/
 
 const rootReducer = combineReducers({
   isLoading,
-  people
+  people,
+  currentPersonId
 })
 
 export default rootReducer

@@ -1,6 +1,7 @@
 const initialState = {
   isLoading: true,
-  people: []
+  people: [],
+  currentPersonId: 1234
 }
 
 export default initialState

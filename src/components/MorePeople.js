@@ -7,7 +7,7 @@ class MorePeople extends React.Component {
         <button
           type="button"
           className="btn btn-primary col-lg-6"
-          onClick={() => this.props.handleClick('https://randomuser.me/api/?results=5&inc=name,email,location&nat=gb,us,es')}
+          onClick={() => this.props.handleClick('https://randomuser.me/api/?results=5&inc=name,email,location,picture&nat=gb,us,es')}
          >Add more people</button>
       </div>
     )

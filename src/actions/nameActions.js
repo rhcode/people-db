@@ -7,10 +7,10 @@ export function namesFetchDataSuccess(names) {
   }
 }
 
-export function displayPerson(personId) {
+export function displayPerson(currentPersonId) {
   return {
     type: ActionConstants.DISPLAY_PERSON,
-    personId
+    currentPersonId
   }
 }
 
@@ -48,19 +48,23 @@ export function namesFetchData(url) {
           let name = person["name"]
           let location = person["location"]
           let email = person["email"]
+          let picture = person["picture"]
 
-          let combinedName = name["first"] + " " + name["last"]
+          let combinedName = name["first"].charAt(0).toUpperCase() + name["first"].slice(1)
+            + " " + name["last"].charAt(0).toUpperCase() + name["last"].slice(1)
           peopleArray.push({
             id: getRandomInt(),
             name: combinedName,
             location: location,
-            email: email
+            email: email,
+            picture: picture.large
           })
         }
         return peopleArray
       })
       .then((peopleArray) => {
         dispatch(loadingData(false))
+        dispatch(displayPerson(peopleArray[0].id))
         dispatch(namesFetchDataSuccess(peopleArray))
       })
   }
